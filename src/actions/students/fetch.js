@@ -2,6 +2,8 @@
 
 import API from '../../api/client'
 
+export const FETCHED_STUDENTS = 'FETCHED_STUDENTS'
+export const FETCHED_ONE_STUDENT = 'FETCHED_ONE_STUDENT'
 
 const api = new API()
 
