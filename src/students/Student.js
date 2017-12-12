@@ -22,6 +22,8 @@ class Student extends PureComponent {
   render() {
     const { firstName, lastName, photo, evaluations } = this.props
 
+    const lastEvaluationColor = evaluations.map(color => color.evaluationColor)
+
     return(
       <article className="student">
         <header>
@@ -34,7 +36,7 @@ class Student extends PureComponent {
             <li>{lastName}</li>
           </ul>
 
-          <p>{ evaluations.toString() }</p>
+          <p>Last Evaluation Color: { lastEvaluationColor }</p>
         </header>
       </article>
     )
