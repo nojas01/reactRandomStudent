@@ -7,6 +7,7 @@ import React, { PureComponent } from 'react'
 import Paper from 'material-ui/Paper'
 import Menu from 'material-ui/Menu'
 import MenuItem from 'material-ui/MenuItem'
+import StudentsContainer from '../students/StudentsContainer'
 import './Lobby.css'
 
 class Lobby extends PureComponent {
@@ -19,11 +20,11 @@ class Lobby extends PureComponent {
   render() {
     return (
       <div className="Lobby">
-        <h1>Lobby!</h1>
+        <h1>Batch!</h1>
 
         <Paper className="paper">
           <Menu>
-            <p> students here </p>
+            < StudentsContainer />
           </Menu>
         </Paper>
       </div>
