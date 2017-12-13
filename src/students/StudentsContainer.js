@@ -4,6 +4,7 @@ import { fetch as fetchStudents } from '../actions/students'
 import Title from '../components/UI/Title'
 import Student from './Student'
 import StudentEditor from './StudentEditor'
+import RandomStudentButton from '../components/RandomStudentButton'
 // import './StudentsContainer.css'
 const redArray = []
 const yellowArray = []
@@ -21,28 +22,33 @@ class StudentsContainer extends PureComponent {
     )
   }
 
-  // function randomIndexNumber(min, max) {
-  //   min = Math.ceil(min)
-  //   max = Math.floor(max)
-  //   return Math.floor(Math.random() * (max - min)) + min
+  // selectedStudent(id) {
+  //   if (students.map(student => student._id === id[0]))
+  //   return [student.firstName , student.lastName]
   // }
 
-  studentEvaluation(student) {
+  render() {
+
+  const { students, _id, firstName, lastName, valuations } = this.props
+
+
+  const studentEvaluation = (function(student) {
     if (student.evaluations.map(color => color.evaluationColor)[0] === "red") {
-      redArray.push(student._id)
+      redArray.push([student.firstName, student.lastName])
     }
     else if (student.evaluations.map(color => color.evaluationColor)[0] === "green") {
-      greenArray.push(student._id)
+      greenArray.push([student.firstName, student.lastName])
     }
     else if (student.evaluations.map(color => color.evaluationColor)[0] === "yellow") {
-      yellowArray.push(student._id)
+      yellowArray.push([student.firstName, student.lastName])
     }
     else {
-      console.log(student._id);
+      console.log([student.firstName, student.lastName]);
     }
-  }
+  })
 
-  randomStudentId() {
+  const randomStudentId = (function() {
+    studentEvaluation
     const selectColor = Math.floor(Math.random()*100)
     console.log(selectColor)
       if  (selectColor <= 50) {
@@ -57,19 +63,20 @@ class StudentsContainer extends PureComponent {
         console.log(greenArray);
         return greenArray[Math.floor(Math.random()*greenArray.length)]
       }
-    }
-  
+    })
 
 
-  render() {
-    const { students, _id, evaluations } = this.props
-    console.log(students.map(this.studentEvaluation));
-    console.log(this.randomStudentId());
+
+    console.log(students.map(studentEvaluation));
+    console.log(randomStudentId);
+    console.log(redArray);
+
     if (!students) { return null }
 
     return(
       <div className="StudentsContainer">
-
+      <button className="primary" onClick={randomStudentId}>Save</button>
+      <p>{randomStudentId[0]} {randomStudentId[1]}</p>
         <header>
           <Title content="All Students" />
         </header>
@@ -88,5 +95,6 @@ class StudentsContainer extends PureComponent {
 }
 
 const mapStateToProps = ({ students }) => ({ students })
+
 
 export default connect(mapStateToProps)(StudentsContainer)
