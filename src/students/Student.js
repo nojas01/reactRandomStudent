@@ -26,20 +26,17 @@ class Student extends PureComponent {
 
     return(
       <article className="student">
-        <Link to={`/students/${_id}`}>
         <header>
-          <div
-            className="cover"
-            style={{ backgroundImage: `url(${photo || PLACEHOLDER })` }} />
-
-          <ul className="personalia">
-            <li>{firstName}</li>
-            <li>{lastName}</li>
-          </ul>
+          <Link to={`/students/${_id}`}>
+            <img src={ photo } alt={ firstName } />
+            <ul className="personalia">
+              <li>{firstName}</li>
+              <li>{lastName}</li>
+            </ul>
+          </Link>
 
           <p>Last Evaluation Color: { lastEvaluationColor }</p>
         </header>
-        </Link>
       </article>
     )
   }
