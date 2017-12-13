@@ -17,9 +17,13 @@ class StudentsContainer extends PureComponent {
     )
   }
 
-  render() {
-    const { students } = this.props
+  studentEvaluation(student) {
+    return (student.evaluations)
+  }
 
+  render() {
+    const { students, _id, evaluations } = this.props
+    console.log(students.map(this.studentEvaluation));
     if (!students) { return null }
 
     return(
