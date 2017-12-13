@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetch as fetchStudents } from '../actions/students'
 import Title from '../components/UI/Title'
+import { Link } from 'react-router-dom'
+
 
 export class StudentPage extends PureComponent {
   // static propTypes = {
@@ -19,10 +21,17 @@ export class StudentPage extends PureComponent {
     // if (!title) return null
 
     return(
-      <div className="student page">
-        <h1>{ firstName } { lastName }</h1>
-        <img src={ photo } alt={ firstName } />
-      </div>
+      <article>
+          <div className="student page">
+            <h1>{ firstName } { lastName }</h1>
+            <img src={ photo } alt={ firstName } />
+          </div>
+          <footer>
+            <Link to={'/'}>
+              <p> Back to batch Students </p>
+            </Link>
+          </footer>
+      </article>
     )
   }
 }
