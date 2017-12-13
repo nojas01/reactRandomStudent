@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { fetch as fetchStudents } from '../actions/students'
 import Title from '../components/UI/Title'
 import Student from './Student'
-// import StudentEditor from './StudentEditor'
+import StudentEditor from './StudentEditor'
 // import './StudentsContainer.css'
 
 class StudentsContainer extends PureComponent {
@@ -32,6 +32,11 @@ class StudentsContainer extends PureComponent {
         <main>
           {students.map(this.renderStudent)}
         </main>
+
+        <footer>
+          <h1> Add Another Student</h1>
+          <StudentEditor />
+        </footer>
       </div>
     )
   }
