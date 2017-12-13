@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react'
 // import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 // import StudentCategory from './StudentCategory'
 import Title from '../components/UI/Title'
 // import './StudentItem.css'
@@ -20,21 +20,20 @@ class Student extends PureComponent {
 
 
   render() {
-    const { firstName, lastName, photo, evaluations } = this.props
+    const { _id, firstName, lastName, photo, evaluations } = this.props
 
     const lastEvaluationColor = evaluations.map(color => color.evaluationColor)
 
     return(
       <article className="student">
         <header>
-          <div
-            className="cover"
-            style={{ backgroundImage: `url(${photo || PLACEHOLDER })` }} />
-
-          <ul className="personalia">
-            <li>{firstName}</li>
-            <li>{lastName}</li>
-          </ul>
+          <Link to={`/students/${_id}`}>
+            <img src={ photo } alt={ firstName } />
+            <ul className="personalia">
+              <li>{firstName}</li>
+              <li>{lastName}</li>
+            </ul>
+          </Link>
 
           <p>Last Evaluation Color: { lastEvaluationColor }</p>
         </header>
