@@ -2,10 +2,10 @@ import API from '../../api/client'
 
 const api = new API()
 
-export default (evaluation)  => {
+export default (student)  => {
   return (dispatch) => {
 
-    api.post('/evaluations', {...evaluation })
+    api.post(`/students/${student._id}/evaluations'`, {})
       .then((res) => {
         console.log(res);
       })

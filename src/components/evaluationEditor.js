@@ -1,13 +1,13 @@
 // src/students/StudentEditor.js
 import React, { PureComponent } from 'react'
-// import Editor from 'react-medium-editor'
-// import toMarkdown from 'to-markdown'
 import { connect } from 'react-redux'
 import Editor from 'react-medium-editor'
-// import 'medium-editor/dist/css/medium-editor.css'
-// import 'medium-editor/dist/css/themes/default.css'
+import 'medium-editor/dist/css/medium-editor.css'
+import 'medium-editor/dist/css/themes/default.css'
 import createEvaluation from '../actions/evaluations/create'
 import DatePicker from 'material-ui/DatePicker';
+import { match } from 'react-router-dom'
+
 // import './StudentEditor.css'
 const TYPES = [
   'red',
@@ -19,7 +19,6 @@ const TYPES = [
 class EvaluationEditor extends PureComponent {
   constructor(props) {
     super()
-
     const { evaluationDate, evaluationColor, evaluationComment } = props
     // "evaluationDate": "2017-12-20",
     // "evaluationColor": "red",
@@ -72,12 +71,16 @@ class EvaluationEditor extends PureComponent {
       ...this.state
     }
 
-    console.table(evaluation)
+    console.log(evaluation)
 
     this.props.save(evaluation)
+
   }
 
   render() {
+    
+    const id = match.params.id
+    console.log(id);
     return (
       <div className="editor">
         <DatePicker
