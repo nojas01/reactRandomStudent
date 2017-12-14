@@ -6,7 +6,7 @@ import React, { PureComponent } from 'react'
 // import CreateStudentButton from '../components/games/CreateStudentButton'
 import Paper from 'material-ui/Paper'
 import Menu from 'material-ui/Menu'
-import MenuItem from 'material-ui/MenuItem'
+// import MenuItem from 'material-ui/MenuItem'
 import StudentsContainer from '../students/StudentsContainer'
 import './Lobby.css'
 
