@@ -33,14 +33,15 @@ class StudentsContainer extends PureComponent {
 
 
   const studentEvaluation = (function(student) {
+
     if (student.evaluations.map(color => color.evaluationColor)[0] === "red") {
-      redArray.push([student.firstName, student.lastName])
+      redArray.push(`${student.firstName} ${student.lastName}`)
     }
     else if (student.evaluations.map(color => color.evaluationColor)[0] === "green") {
-      greenArray.push([student.firstName, student.lastName])
+      greenArray.push(`${student.firstName} ${student.lastName}`)
     }
     else if (student.evaluations.map(color => color.evaluationColor)[0] === "yellow") {
-      yellowArray.push([student.firstName, student.lastName])
+      yellowArray.push(`${student.firstName} ${student.lastName}`)
     }
     else {
       console.log([student.firstName, student.lastName]);
@@ -75,7 +76,7 @@ class StudentsContainer extends PureComponent {
 
     return(
       <div className="StudentsContainer">
-      <button className="primary" onClick={randomStudentId}>Save</button>
+      <button className="primary" onClick={randomStudentId}>Select Random Student</button>
       <p>{randomStudentId[0]} {randomStudentId[1]}</p>
         <header>
           <Title content="All Students" />

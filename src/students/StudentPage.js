@@ -16,7 +16,7 @@ export class StudentPage extends PureComponent {
   }
 
   render() {
-    const { firstName, lastName, photo } = this.props
+    const { _id, firstName, lastName, photo } = this.props
 
     // if (!title) return null
 
@@ -27,7 +27,7 @@ export class StudentPage extends PureComponent {
             <img src={ photo } alt={ firstName } />
           </div>
           <div>
-            <EvaluationEditor />
+            <EvaluationEditor studentID={_id} />
           </div>
           <footer>
             <Link to={'/'}>

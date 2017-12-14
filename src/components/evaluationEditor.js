@@ -19,19 +19,20 @@ const TYPES = [
 class EvaluationEditor extends PureComponent {
   constructor(props) {
     super()
-    const { evaluationDate, evaluationColor, evaluationComment } = props
-    // "evaluationDate": "2017-12-20",
-    // "evaluationColor": "red",
-    // "evaluationComment": "StringStringStringString"
+    const { evaluationDate, evaluationColor, evaluationComment, studentId } = props
+
     this.state = {
       evaluationDate: null,
       evaluationColor,
       evaluationComment,
+      studentId,
     }
   }
 
   setType(event) {
     const clickedColor = event.target.value
+    const tempId = this.props.studentID
+    console.log(tempId);
     let tempEvaluationColor = ""
       if (clickedColor === 'red') {
         tempEvaluationColor = 'red'
@@ -46,8 +47,10 @@ class EvaluationEditor extends PureComponent {
         return tempEvaluationColor
       }
     this.setState({
-      evaluationColor: tempEvaluationColor
+      evaluationColor: tempEvaluationColor,
+      studentId: tempId
     })
+    console.log(this.state);
   }
 
   updateRemarks(text) {
@@ -60,27 +63,22 @@ class EvaluationEditor extends PureComponent {
     this.setState({
       evaluationDate: date,
     })
-    // console.log(this.state);
   }
 
 
   saveEvaluation() {
-    console.table(this.state)
-
     const evaluation = {
-      ...this.state
+      ...this.state,
     }
 
     console.log(evaluation)
-
     this.props.save(evaluation)
 
   }
 
   render() {
-    
-    const id = match.params.id
-    console.log(id);
+    // const { studentId } = this.props.studentID
+    console.log(this.props.studentID);
     return (
       <div className="editor">
         <DatePicker
@@ -111,6 +109,6 @@ class EvaluationEditor extends PureComponent {
   }
 }
 
-const mapDispatchToProps = { save: createEvaluation }
+const mapDispatchToProps = { save: createEvaluation}
 
 export default connect(null, mapDispatchToProps)(EvaluationEditor)
