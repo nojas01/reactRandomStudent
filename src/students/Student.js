@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom'
 // import Title from '../components/UI/Title'
 // import './StudentItem.css'
 
-const PLACEHOLDER = 'http://via.placeholder.com/500x180?text=No%20Image'
 
 class Student extends PureComponent {
   // static propTypes = {

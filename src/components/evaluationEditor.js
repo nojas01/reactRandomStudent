@@ -6,7 +6,7 @@ import 'medium-editor/dist/css/medium-editor.css'
 import 'medium-editor/dist/css/themes/default.css'
 import createEvaluation from '../actions/evaluations/create'
 import DatePicker from 'material-ui/DatePicker';
-import { match } from 'react-router-dom'
+// import { match } from 'react-router-dom'
 
 // import './StudentEditor.css'
 const TYPES = [
@@ -19,7 +19,7 @@ const TYPES = [
 class EvaluationEditor extends PureComponent {
   constructor(props) {
     super()
-    const { evaluationDate, evaluationColor, evaluationComment, studentId } = props
+    const { evaluationColor, evaluationComment, studentId } = props
 
     this.state = {
       evaluationDate: null,
@@ -31,25 +31,20 @@ class EvaluationEditor extends PureComponent {
 
   setType(event) {
     const clickedColor = event.target.value
-    const tempId = this.props.studentID
-    console.log(tempId);
     let tempEvaluationColor = ""
       if (clickedColor === 'red') {
         tempEvaluationColor = 'red'
-        return tempEvaluationColor
+        this.setState({ evaluationColor: tempEvaluationColor })
       }
       else if (clickedColor === 'yellow') {
         tempEvaluationColor = 'yellow'
-        return tempEvaluationColor
+        this.setState({evaluationColor: tempEvaluationColor })
       }
       else {
         tempEvaluationColor = 'green'
-        return tempEvaluationColor
+        this.setState({evaluationColor: tempEvaluationColor })
       }
-    this.setState({
-      evaluationColor: tempEvaluationColor,
-      studentId: tempId
-    })
+
     console.log(this.state);
   }
 
