@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetch as fetchStudents } from '../actions/students'
-import Title from '../components/UI/Title'
+// import Title from '../components/UI/Title'
 import { Link } from 'react-router-dom'
 import EvaluationEditor from '../components/evaluationEditor'
 
