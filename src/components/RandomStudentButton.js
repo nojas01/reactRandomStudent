@@ -19,13 +19,13 @@ class RandomStudentButton extends PureComponent {
     yellowArray.length = 0
     greenArray.length = 0
 
-      const { students, _id, firstName, lastName, valuations } = this.props
+      const { students, _id, firstName, lastName, evaluations } = this.props
       const studentEvaluation = (function(student) {
 
         if (student.evaluations.map(color => color.evaluationColor)[0] === "red") {
           redArray.push(`${student.firstName} ${student.lastName}`)
         }
-        else if (student.evaluations.map(color => color.evaluationColor)[0] === "green") {
+        else if (student.evaluations.map(color => color.evaluationColor)[0] === "green" || student.evaluations.length === 0) {
           greenArray.push(`${student.firstName} ${student.lastName}`)
         }
         else if (student.evaluations.map(color => color.evaluationColor)[0] === "yellow") {
@@ -41,15 +41,15 @@ class RandomStudentButton extends PureComponent {
         const selectColor = Math.floor(Math.random()*100)
         console.log(selectColor)
           if  (selectColor <= 50) {
-            console.log(redArray);
+            console.log(redArray[Math.floor(Math.random()*redArray.length)]);
             return redArray[Math.floor(Math.random()*redArray.length)]
           }
           else if (selectColor > 50 && selectColor <= 83) {
-          console.log(yellowArray);
+          console.log(yellowArray[Math.floor(Math.random()*redArray.length)]);
             return yellowArray[Math.floor(Math.random()*yellowArray.length)]
           }
           else {
-            console.log(greenArray);
+            console.log(greenArray[Math.floor(Math.random()*redArray.length)]);
             return greenArray[Math.floor(Math.random()*greenArray.length)]
           }
         })
