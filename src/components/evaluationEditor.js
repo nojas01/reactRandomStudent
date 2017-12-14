@@ -3,10 +3,11 @@ import React, { PureComponent } from 'react'
 // import Editor from 'react-medium-editor'
 // import toMarkdown from 'to-markdown'
 import { connect } from 'react-redux'
+import Editor from 'react-medium-editor'
 // import 'medium-editor/dist/css/medium-editor.css'
 // import 'medium-editor/dist/css/themes/default.css'
-import createStudent from '../actions/students/create'
-import DatePicker from './UI/DatePicker'
+import createEvaluation from '../actions/evaluations/create'
+import DatePicker from 'material-ui/DatePicker';
 // import './StudentEditor.css'
 const TYPES = [
   'red',
@@ -15,73 +16,74 @@ const TYPES = [
 ]
 
 
-class StudentEditor extends PureComponent {
+class EvaluationEditor extends PureComponent {
   constructor(props) {
     super()
 
-    const { firstName, lastName, photo } = props
+    const { evaluationDate, evaluationColor, evaluationComment } = props
     // "evaluationDate": "2017-12-20",
     // "evaluationColor": "red",
     // "evaluationComment": "StringStringStringString"
     this.state = {
-      evaluationDate,
+      evaluationDate: null,
       evaluationColor,
       evaluationComment,
     }
   }
 
   setType(event) {
-    this.setState({
-      if (event.target.value === 'red') {
-        evaluationColor = 'red'
+    const clickedColor = event.target.value
+    let tempEvaluationColor = ""
+      if (clickedColor === 'red') {
+        tempEvaluationColor = 'red'
+        return tempEvaluationColor
       }
-      else if (event.target.value === 'yellow') {
-        evaluationColor = 'yellow'
+      else if (clickedColor === 'yellow') {
+        tempEvaluationColor = 'yellow'
+        return tempEvaluationColor
       }
       else {
-        evaluationColor= 'green'
+        tempEvaluationColor = 'green'
+        return tempEvaluationColor
       }
-    })
-  }
-
-  updateFirstName(event) {
-    if (event.keyCode === 13) {
-      event.preventDefault()
-      this.refs.summary.medium.elements[0].focus()
-    }
     this.setState({
-      firstName: this.refs.firstname.value
+      evaluationColor: tempEvaluationColor
     })
   }
 
-  updateRemarks(event) {
+  updateRemarks(text) {
     this.setState({
-      remark: text
+      evaluationComment: text
     })
   }
 
-  updatePhoto(event) {
+  updateDate = (event, date) => {
     this.setState({
-      photo: this.refs.photo.value
+      evaluationDate: date,
     })
+    // console.log(this.state);
   }
 
 
-  saveStudent() {
+  saveEvaluation() {
     console.table(this.state)
 
-    const student = {
+    const evaluation = {
       ...this.state
     }
 
-    console.table(student)
+    console.table(evaluation)
 
-    this.props.save(student)
+    this.props.save(evaluation)
   }
 
   render() {
     return (
       <div className="editor">
+        <DatePicker
+            hintText="pick the date"
+            value={this.state.evaluationDate}
+            onChange={this.updateDate} />
 
         {TYPES.map((type) => {
               return <label key={type} htmlFor={type}>
@@ -93,19 +95,19 @@ class StudentEditor extends PureComponent {
         <Editor
           ref="remark"
           options={{
-            placeholder: {text: 'Write an Introduction...'}
+            placeholder: {text: 'Write remarks...'}
           }}
           onChange={this.updateRemarks.bind(this)}
           text={this.state.remarks} />
 
         <div className="actions">
-          <button className="primary" onClick={this.saveStudent.bind(this)}>Save</button>
+          <button className="primary" onClick={this.saveEvaluation.bind(this)}>Save</button>
         </div>
       </div>
     )
   }
 }
 
-const mapDispatchToProps = { save: createStudent }
+const mapDispatchToProps = { save: createEvaluation }
 
-export default connect(null, mapDispatchToProps)(StudentEditor)
+export default connect(null, mapDispatchToProps)(EvaluationEditor)

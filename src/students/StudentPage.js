@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { fetch as fetchStudents } from '../actions/students'
 import Title from '../components/UI/Title'
 import { Link } from 'react-router-dom'
-
+import EvaluationEditor from '../components/evaluationEditor'
 
 export class StudentPage extends PureComponent {
   // static propTypes = {
@@ -25,6 +25,9 @@ export class StudentPage extends PureComponent {
           <div className="student page">
             <h1>{ firstName } { lastName }</h1>
             <img src={ photo } alt={ firstName } />
+          </div>
+          <div>
+            <EvaluationEditor />
           </div>
           <footer>
             <Link to={'/'}>
