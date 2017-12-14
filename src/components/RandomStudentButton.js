@@ -11,55 +11,62 @@ const greenArray = []
 
 class RandomStudentButton extends PureComponent {
   componentWillMount() {
-    this.props.fetchStudents()
-    this.props.students.map(this.studentEvaluation)
-  }
-  constructor(props) {
-    super()
-  const { students, _id, evaluations } = this.props
-  }
-
-
-  studentEvaluation(student) {
-    if (student.evaluations.map(color => color.evaluationColor)[0] === "red") {
-      redArray.push(student._id)
+    this.props.dispatch(fetchStudents())
     }
-    else if (student.evaluations.map(color => color.evaluationColor)[0] === "green") {
-      greenArray.push(student._id)
-    }
-    else if (student.evaluations.map(color => color.evaluationColor)[0] === "yellow") {
-      yellowArray.push(student._id)
-    }
-    else {
-      console.log(student._id);
-    }
-  }
-
-  randomStudentId() {
-    const selectColor = Math.floor(Math.random()*100)
-    console.log(selectColor)
-      if  (selectColor <= 50) {
-        console.log(redArray);
-        return redArray[Math.floor(Math.random()*redArray.length)]
-      }
-      else if (selectColor > 50 && selectColor <= 83) {
-      console.log(yellowArray);
-        return yellowArray[Math.floor(Math.random()*yellowArray.length)]
-      }
-      else {
-        console.log(greenArray);
-        return greenArray[Math.floor(Math.random()*greenArray.length)]
-      }
-  }
 
   render() {
+    redArray.length = 0
+    yellowArray.length = 0
+    greenArray.length = 0
+
+      const { students, _id, firstName, lastName, valuations } = this.props
+      const studentEvaluation = (function(student) {
+
+        if (student.evaluations.map(color => color.evaluationColor)[0] === "red") {
+          redArray.push(`${student.firstName} ${student.lastName}`)
+        }
+        else if (student.evaluations.map(color => color.evaluationColor)[0] === "green") {
+          greenArray.push(`${student.firstName} ${student.lastName}`)
+        }
+        else if (student.evaluations.map(color => color.evaluationColor)[0] === "yellow") {
+          yellowArray.push(`${student.firstName} ${student.lastName}`)
+        }
+        else {
+          console.log([student.firstName, student.lastName]);
+        }
+      })
+
+      const randomStudentId = (function() {
+        studentEvaluation
+        const selectColor = Math.floor(Math.random()*100)
+        console.log(selectColor)
+          if  (selectColor <= 50) {
+            console.log(redArray);
+            return redArray[Math.floor(Math.random()*redArray.length)]
+          }
+          else if (selectColor > 50 && selectColor <= 83) {
+          console.log(yellowArray);
+            return yellowArray[Math.floor(Math.random()*yellowArray.length)]
+          }
+          else {
+            console.log(greenArray);
+            return greenArray[Math.floor(Math.random()*greenArray.length)]
+          }
+        })
+
+        console.log(students.map(studentEvaluation));
+        console.log(randomStudentId);
+        console.log(redArray);
 
     return (
       <div>
-        <button className="SelectStudent" onClick={this.randomStudentId.bind(this)}>select student</button>
+        <button className="primary" onClick={randomStudentId}>Select Random Student</button>
+        <p>{randomStudentId[0]} {randomStudentId[1]}</p>
       </div>
     )
   }
 }
+const mapStateToProps = ({ students }) => ({ students })
 
-export default RandomStudentButton
+
+export default connect(mapStateToProps)(RandomStudentButton)
