@@ -1,0 +1,11 @@
+main {
+  font-style: verdana;
+  display: flex;
+  flex-direction: row;
+  border-color: solid green;
+  border-width: 2px;
+  padding: 2em;
+  box-sizing: border-box;
+  align-items: center;
+  width: 100%;
+}

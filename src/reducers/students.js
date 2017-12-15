@@ -1,7 +1,7 @@
 // src/reducers/students.js
 import {
   FETCHED_STUDENTS,
-  CREATE_STUDENT
+  CREATED_STUDENT
 } from '../actions/students'
 
 const newId = (state) => {
@@ -16,7 +16,7 @@ export default (state = [], {type, payload} = {}) => {
     case FETCHED_STUDENTS :
       return [ ...payload ]
 
-    case CREATE_STUDENT :
+    case CREATED_STUDENT :
       return [{ ...payload, _id: newId(state) }].concat(state)
 
 

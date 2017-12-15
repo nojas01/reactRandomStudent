@@ -19,7 +19,7 @@ class StudentsContainer extends PureComponent {
   }
 
   render() {
-    const { students } = this.props 
+    const { students } = this.props
     if (!students) { return null }
 
     return(
@@ -30,7 +30,7 @@ class StudentsContainer extends PureComponent {
         </header>
 
         <main>
-          {students.map(this.renderStudent)}
+          {this.props.students.map(this.renderStudent.bind(this))}
         </main>
 
         <footer>

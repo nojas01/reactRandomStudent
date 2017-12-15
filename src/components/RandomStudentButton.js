@@ -1,8 +1,5 @@
 import React, { PureComponent } from 'react'
-// import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-// import RaisedButton from 'material-ui/RaisedButton'
-// import StarIcon from 'material-ui/svg-icons/action/favorite'
 import { fetch as fetchStudents } from '../actions/students'
 
 const redArray = []
@@ -42,6 +39,8 @@ class RandomStudentButton extends PureComponent {
 
   render() {
     const { students } = this.props
+
+
     const studentEvaluation = (function(student) {
       if (student.evaluations.map(color => color.evaluationColor)[0] === "red") {
         redArray.push(`${student.firstName} ${student.lastName}`)
@@ -57,7 +56,7 @@ class RandomStudentButton extends PureComponent {
     return (
       <div>
         <button className="primary" onClick={this.randomStudentId.bind(this)}>Select Random Student</button>
-        <p> The next question is for: {this.state.randomStudent} </p>
+        <p className="random"> The next question is for: {this.state.randomStudent} </p>
       </div>
     )
   }
