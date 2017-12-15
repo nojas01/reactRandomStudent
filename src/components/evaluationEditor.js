@@ -60,7 +60,6 @@ class EvaluationEditor extends PureComponent {
     })
   }
 
-
   saveEvaluation() {
     const evaluation = {
       ...this.state,
@@ -104,6 +103,6 @@ class EvaluationEditor extends PureComponent {
   }
 }
 
-const mapDispatchToProps = { save: createEvaluation}
+const mapDispatchToProps = { save: createEvaluation }
 
 export default connect(null, mapDispatchToProps)(EvaluationEditor)
