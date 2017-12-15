@@ -17,14 +17,12 @@ class RandomStudentButton extends PureComponent {
     const {redArray, yellowArray, greenArray } = this.props
     const selectColor = Math.floor(Math.random()*100)
     const x = []
-    console.log(selectColor)
-    if  (selectColor <= 50) {
+    console.log(selectColor);
+    if  (selectColor < 50 && redArray.length !== 0 ) {
       x.push(redArray[Math.floor(Math.random()*redArray.length)])
-
     }
-    else if (selectColor > 50 && selectColor <= 83) {
+    else if (selectColor >= 50 && selectColor <= 83 && yellowArray !== 0 ) {
       x.push(yellowArray[Math.floor(Math.random()*yellowArray.length)])
-
     }
     else {
       x.push(greenArray[Math.floor(Math.random()*greenArray.length)])
@@ -33,7 +31,6 @@ class RandomStudentButton extends PureComponent {
   }
 
   render() {
-
 
     return (
       <div>
