@@ -6,7 +6,7 @@
 
 ## Introduction
 
-*This was the final assignment for the [Codaisseur Academy](https://www.codaisseur.com/). Starting on a tuesday afternoon with the deadline that friday. This is the front-end reactJS part of the assignment. The ExpressJS API also made as part of the assignment you'll find in this [here](https://github.com/nojas01/apiRandomStudent)*
+*This was the final assignment for the [Codaisseur Academy](https://www.codaisseur.com/). Starting on a tuesday afternoon with the deadline that friday. This is the front-end ReactJS part of the assignment. The ExpressJS API also made as part of the assignment you'll find in this [here](https://github.com/nojas01/apiRandomStudent)*
 
 
 *Part of the assignment is making smart choices about where to start, how to prioritize tasks, time managment etc. Nobody finishes everything so the question then becomes in order to make tis an MVP what are the most important tasks and focus on finishing those before spending time on side 'quests'*
